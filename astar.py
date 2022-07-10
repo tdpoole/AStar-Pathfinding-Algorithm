@@ -1,4 +1,3 @@
-from unicodedata import name
 from boardclass import Board
 from prioritylist import PriorityList
 
