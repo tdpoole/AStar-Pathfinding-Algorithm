@@ -45,6 +45,9 @@ class Board:
 
         self.initial_node.open(-1, self.endposition)
 
+        print("Node board:")
+        self.string()
+
     def get_node_at_position(self, x, y) -> Node:
         xval = x
         yval = y
