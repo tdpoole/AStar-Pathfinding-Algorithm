@@ -43,9 +43,16 @@ class Board:
                     print(f"({x},{y})    Node code invalid. Adding blank node.")
                     self.board[y][x] = Node("empty", (x, y))
 
+        self.initial_node.open(-1, self.endposition)
+
     def get_node_at_position(self, x, y) -> Node:
         xval = x
         yval = y
+
+        if xval < 0 or yval < 0:
+            print("ERROR LIST INDEX OUT OF RANGE")
+            return
+
         try:
             return self.board[yval][xval]
         except IndexError:
@@ -59,6 +66,7 @@ class Board:
         if xval < 0 or yval < 0:
             print("ERROR LIST INDEX OUT OF RANGE")
             return
+
         try:
             self.board[yval][xval] = val
         except IndexError:
