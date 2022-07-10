@@ -22,11 +22,11 @@ def a_star_pathfind(grid_to_pathfind):
     print("Pathfinding:")
     for x in grid_to_pathfind:
         print(x)
-    input()
+    # input()
 
     board = Board(grid_to_pathfind)
 
-    input()
+    # input()
 
     open_nodes = PriorityList()
     destination_reached = False
@@ -34,7 +34,7 @@ def a_star_pathfind(grid_to_pathfind):
     print(f"Starting at {board.initial_node.position}")
 
     while not destination_reached:
-        input()
+        # input()
 
         board.string()
 
