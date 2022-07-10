@@ -94,9 +94,9 @@ def a_star_pathfind(grid_to_pathfind):
                 if searching_direction == "SOUTH":
                     row_to_add.append("|")
                 if searching_direction == "EAST":
-                    row_to_add.append(">")
-                if searching_direction == "WEST":
                     row_to_add.append("<")
+                if searching_direction == "WEST":
+                    row_to_add.append(">")
         direction_map.append(row_to_add)
 
     print("Direction map:")
