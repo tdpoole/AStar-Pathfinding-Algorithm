@@ -45,21 +45,16 @@ class Board:
 
         self.initial_node.open(-1, self.endposition)
 
-        print("Node board:")
-        self.string()
-
     def get_node_at_position(self, x, y) -> Node:
         xval = x
         yval = y
 
         if xval < 0 or yval < 0:
-            print("ERROR LIST INDEX OUT OF RANGE")
             return
 
         try:
             return self.board[yval][xval]
         except IndexError:
-            print("ERROR LIST INDEX OUT OF RANGE")
             return None
 
     def set_node_at_position(self, val, x, y):
@@ -67,13 +62,12 @@ class Board:
         yval = y
 
         if xval < 0 or yval < 0:
-            print("ERROR LIST INDEX OUT OF RANGE")
             return
 
         try:
             self.board[yval][xval] = val
         except IndexError:
-            print("ERROR LIST INDEX OUT OF RANGE")
+            return
 
     def string(self):
         print("\n\n==========BOARD:")

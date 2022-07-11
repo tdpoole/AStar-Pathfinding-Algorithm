@@ -18,9 +18,6 @@ def invert_direction(direction):
 
 
 def a_star_pathfind(grid_to_pathfind):
-    print("Pathfinding:")
-    for x in grid_to_pathfind:
-        print(x)
     # input()
 
     board = Board(grid_to_pathfind)
@@ -30,12 +27,9 @@ def a_star_pathfind(grid_to_pathfind):
     open_nodes = PriorityList()
     destination_reached = False
     open_nodes.add_node(board.initial_node)
-    print(f"Starting at {board.initial_node.position}")
 
     while not destination_reached:
         # input()
-
-        board.string()
 
         open_nodes.sort()
 
@@ -52,8 +46,6 @@ def a_star_pathfind(grid_to_pathfind):
                 xcheck = checking_from[0] + direction_shifts[checking_direction][0]
                 ycheck = checking_from[1] + direction_shifts[checking_direction][1]
                 space_to_check = (xcheck, ycheck)
-
-                print(f"Checking {space_to_check} from {checking_from}")
 
                 node_to_check = board.get_node_at_position(space_to_check[0], space_to_check[1])
 
@@ -78,31 +70,6 @@ def a_star_pathfind(grid_to_pathfind):
 
         board.set_node_at_position(checking_node, checking_from[0], checking_from[1])
 
-    print("REACHED THE END!")
-
-    # Debug: Show directions
-    direction_map = []
-    for y, row in enumerate(board.board):
-        row_to_add = []
-        for x, node in enumerate(row):
-            if node.parent_direction == None:
-                row_to_add.append("0")
-            else:
-                searching_direction = invert_direction(node.parent_direction)
-                if searching_direction == "NORTH":
-                    row_to_add.append("^")
-                if searching_direction == "SOUTH":
-                    row_to_add.append("|")
-                if searching_direction == "EAST":
-                    row_to_add.append("<")
-                if searching_direction == "WEST":
-                    row_to_add.append(">")
-        direction_map.append(row_to_add)
-
-    print("Direction map:")
-    for row in direction_map:
-        print(row)
-
     # Trace the path back!
     result = []
     for y, row in enumerate(board.board):
@@ -117,9 +84,6 @@ def a_star_pathfind(grid_to_pathfind):
     start_unreached = True
     looking_at_node_at_pos = board.endposition
     while start_unreached:
-        print("\n")
-        for row in result:
-            print(row)
         # input("==========\n==========")
         result[looking_at_node_at_pos[1]][looking_at_node_at_pos[0]] = "⬛"
         looking_at_node = board.get_node_at_position(looking_at_node_at_pos[0], looking_at_node_at_pos[1])
@@ -131,14 +95,6 @@ def a_star_pathfind(grid_to_pathfind):
             direction_to_travel_in = looking_at_node.parent_direction
             new_node_position = ((looking_at_node_at_pos[0] + direction_shifts[direction_to_travel_in][0]), (looking_at_node_at_pos[1] + direction_shifts[direction_to_travel_in][1]))
             looking_at_node_at_pos = new_node_position
-
-            print(f"Backtrack direction = {direction_to_travel_in}")
-            print(f"Direction shift = {direction_shifts[direction_to_travel_in]}")
-            print(f"Current node position = {looking_at_node_at_pos}")
-            print(f"New node position = {new_node_position}")
-
-    for row in result:
-        print(row)
 
     print("====================\nFINISHED:")
     for row in result:
